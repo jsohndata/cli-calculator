@@ -144,7 +144,6 @@ function cliCalculator() {
 
     let mathOperatorPrompt
     
-    
     do {
         mathOperatorPrompt = prompt(`Choose 👉  1 - ${mathOperatorTotal}: `)
 
@@ -233,7 +232,7 @@ renderResult += `---------------------------------`
 renderConsoleLog(renderResult)
 
 let userName = prompt('Your name: ')
-userName = checkPrompt(userName,questionName)
+if (userName === null || userName === "" ) userName = checkPrompt(userName,questionName)
 
 
 
@@ -253,9 +252,9 @@ renderResult += `---------------------------------`
 renderConsoleLog(renderResult)
 
 let continueGame = prompt(`Type any letter to continue or ${config.quitKeyword} to exit. `)
-checkPrompt(continueGame,questionGame)
 
-if (continueGame == "No") {
+if (continueGame === null || continueGame === "" ) continueGame = checkPrompt(continueGame,questionGame)
+else if (continueGame == "No") {
     renderResult = `I'm sorry Dave, I'm afraid I can't do that. 🔴`
     renderConsoleClear()
     renderConsoleLog(renderResult)
@@ -273,9 +272,9 @@ while (continueGame !== null) {
     renderConsoleLog(renderResult)
 
     continueGame = prompt(`Type any letter to continue or ${config.quitKeyword} to exit. `)
-    checkPrompt(continueGame,gameQuestion)
-    
-    if (continueGame == "No") {
+
+    if (continueGame === null || continueGame === "" ) continueGame = checkPrompt(continueGame,questionGame)
+    else if (continueGame == config.quitKeyword ) {
         renderConsoleClear()
         renderResult =  `---------------------------------\n`
         renderResult += `So long, and thanks for\n`
