@@ -15,7 +15,7 @@ const nameQuestion = new Question (
     '🤷 Did you forget your name? Please enter your name.',
     '🤷 Come on now. You can do better. Your name?',
     '🤷 Go ahead, make my day.',
-    '👋 Your name is require to Enter The Dragon. Good bye.',
+    '👋 Name is required to Enter The Dragon. Good bye.',
 )
 
 const gameQuestion = new Question (
@@ -25,6 +25,11 @@ const gameQuestion = new Question (
     '🤷 Choose 👉 Yes, No:',
     '🤷 Choose 👉 Yes, No:',
 )
+
+const config = {
+    quitKeyword: `quit`,
+    randomLimit: 10000,
+}
 
 
 
@@ -49,7 +54,7 @@ const mathOperator = [
     "Modular",
 ]
 
-const quitKeyword = `quit`
+
 
 function renderConsoleLog(paramText) {
     console.log(paramText)
@@ -63,11 +68,15 @@ function renderOperator(propUseName = '') {
     return `Operator ${propUseName} 🧖`
 }
 
-function forceQuit() {
-    renderConsoleClear()
-    renderConsoleLog(`Parting is such sweet sorrow. 💔`)
-    process.exit()
+
+function forceQuit(propVar) {
+    if (propVar === config.quitKeyword) {
+        renderConsoleClear()
+        renderConsoleLog(`Parting is such sweet sorrow. 💔`)
+        process.exit()
+    } else null
 }
+
 
 function promptQuestions(propVar, propObject) {
     switch (propVar) {
@@ -97,13 +106,13 @@ function promptQuestions(propVar, propObject) {
     }
 }
 
-// LCI Calculator
+// CLI Calculator
 // ***********************************************************
-function lciCalculator() {
+function cliCalculator() {
     renderConsoleClear()
     
     renderResult =  `Today's game is LCI Calculator 🧮.\n`
-    renderResult += `Type ${quitKeyword} to exit at any time.\n\n`
+    renderResult += `Type ${config.quitKeyword} to exit at any time.\n\n`
     renderResult += `Please choose one of the following.\n`
 
     const mathOperatorTotal = mathOperator.length
@@ -126,7 +135,7 @@ function lciCalculator() {
     do {
         mathOperatorPrompt = prompt(`Choose 👉  1 - ${mathOperatorTotal}: `)
 
-        mathOperatorPrompt === quitKeyword ? forceQuit() : null
+        forceQuit(mathOperatorPrompt)
 
     } while(isNaN(mathOperatorPrompt) || mathOperatorPrompt > mathOperatorTotal || mathOperatorPrompt < 1);
 
@@ -151,11 +160,11 @@ function lciCalculator() {
         mathNum1st  = prompt(`Enter your first number or type random: `)
 
         if (mathNum1st == "random") break
-        mathNum1st === quitKeyword ? forceQuit() : null
+        forceQuit(mathNum1st)
 
     } while (isNaN(mathNum1st))
 
-    const mathNumX = mathNum1st == 'random' ? Math.floor(Math.random() * 10000) : Number(mathNum1st)
+    const mathNumX = mathNum1st == 'random' ? Math.floor(Math.random() * config.randomLimit) : Number(mathNum1st)
     renderResult = `1st Number: ${mathNumX}\n`
     renderConsoleLog(renderResult)
 
@@ -168,11 +177,11 @@ function lciCalculator() {
         mathNum2nd  = prompt(`Enter your second number or type random: `)
 
         if (mathNum2nd == "random") break
-        mathNum2nd === quitKeyword ? forceQuit() : null
+        forceQuit(mathNum2nd)
 
     } while (isNaN(mathNum2nd))
 
-    const mathNumY = mathNum2nd == 'random' ? Math.floor(Math.random() * 10000) : Number(mathNum2nd)
+    const mathNumY = mathNum2nd == 'random' ? Math.floor(Math.random() * config.randomLimit) : Number(mathNum2nd)
     renderResult = `2nd Number: ${mathNumY}\n`
     renderConsoleLog(renderResult)
 
@@ -189,6 +198,10 @@ function lciCalculator() {
 
     renderConsoleLog(renderResult)
 }
+
+
+
+
 
 
 
@@ -220,7 +233,7 @@ if (userName == "") {
 // ***********************************************************
 renderConsoleClear()
 
-renderResult = `Hello, ${renderOperator(userName)}, Nice to meet you. I am LAH 9000 🔴.`
+renderResult = `Hello, ${renderOperator(userName)}, Nice to meet you. I am LAH 9000 🔴.\n`
 renderConsoleLog(renderResult)
 
 
@@ -229,7 +242,6 @@ renderConsoleLog(renderResult)
 indexCounter = 0
 renderResult = `Would you like to play a game today?\n`
 renderResult += `---------------------------------`
-
 renderConsoleLog(renderResult)
 
 let continueGame = prompt('Type any letter to continue or No to quit.')
@@ -239,7 +251,7 @@ if (continueGame == "") {
         indexCounter++
         promptQuestions(indexCounter,gameQuestion)
 
-        continueGame === quitKeyword ? forceQuit() : null
+        forceQuit(continueGame)
 
     } while (continueGame == "")
 } 
@@ -254,7 +266,7 @@ if (continueGame == "No") {
 // 4.0) Lets Play
 // ***********************************************************
 while (continueGame !== null) {
-    lciCalculator()
+    cliCalculator()
 
     renderResult =  `Would you like to play a again ${renderOperator(userName)}?\n`
     renderResult += `---------------------------------`
@@ -266,7 +278,7 @@ while (continueGame !== null) {
             indexCounter++
             promptQuestions(indexCounter,gameQuestion)
 
-            continueGame === quitKeyword ? forceQuit() : null
+            forceQuit(continueGame)
 
         } while (continueGame == "")
     }
