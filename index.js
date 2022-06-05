@@ -88,7 +88,6 @@ function checkPrompt(propVar,propQuestion) {
     else {
         do {
             indexCounter++ 
-
             switch (indexCounter) {
                 case 0:
                 case 1:
@@ -116,11 +115,8 @@ function checkPrompt(propVar,propQuestion) {
             }
         } while (propVar === "")
     }
-
     return propVar
 }
-
-
 
 
 // CLI Calculator
