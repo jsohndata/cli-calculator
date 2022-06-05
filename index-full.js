@@ -31,13 +31,6 @@ const config = {
     randomLimit: 10000,
 }
 
-
-
-/* Originally it was ...
-'0': function (x,y) { return x + y }
-
-But I wanted to display the equation of the math without creating another array. Thus returning this as an array instead
-*/
 const mathOperatorFunction = {
     '0': function (x,y) { return [x + y, `+`]},
     '1': function (x,y) { return [x - y, `-`]},
