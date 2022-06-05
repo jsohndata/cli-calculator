@@ -10,20 +10,20 @@ class Question {
     }
 }
 
-const nameQuestion = new Question (
-    'Please enter your name:',
-    '🤷 Did you forget your name? Please enter your name.',
-    '🤷 Come on now. You can do better. Your name?',
-    '🤷 Go ahead, make my day.',
-    '👋 Name is required to Enter The Dragon. Good bye.',
+const questionName = new Question (
+    `Please enter your name:`,
+    `🤷 Did you forget your name? Please enter your name.`,
+    `🤷 Come on now. You can do better. Your name?`,
+    `🤷 Go ahead, make my day.`,
+    `👋 Name is required to Enter The Dragon. Good bye.`,
 )
 
-const gameQuestion = new Question (
-    'Choose 👉 Yes, No:',
-    '🤷 Choose 👉 Yes, No:',
-    '🤷 Choose 👉 Yes, No:',
-    '🤷 Choose 👉 Yes, No:',
-    '🤷 Choose 👉 Yes, No:',
+const questionGame = new Question (
+    `🤷 Type any letter to continue. `,
+    `🤷 Like any... `,
+    `🤷 I would do anything for love, but I won't type that. `,
+    `🤷 You're a real tough cookie with a long history. `,
+    `👋 Let's play next time. Good bye.`,
 )
 
 const config = {
@@ -55,20 +55,22 @@ const mathOperator = [
 ]
 
 
-
+// Console Log
 function renderConsoleLog(paramText) {
-    console.log(paramText)
+    console.log(paramText,)
 }
 
+// Console Clear
 function renderConsoleClear() {
     console.clear()
 }
 
+// Construct Operator 
 function renderOperator(propUseName = '') {
     return `Operator ${propUseName} 🧖`
 }
 
-
+// Force quit any time
 function forceQuit(propVar) {
     if (propVar === config.quitKeyword) {
         renderConsoleClear()
@@ -77,34 +79,49 @@ function forceQuit(propVar) {
     } else null
 }
 
+// Check prompt
+/* If Null repeat until valid response */
+function checkPrompt(propVar,propQuestion) {
+    let indexCounter = 0
 
-function promptQuestions(propVar, propObject) {
-    switch (propVar) {
-        case 0:
-        case 1:
-        case 2:        
-            userName = prompt(`${propObject[1]} `)
-            break
+    if (propVar == config.quitKeyword) forceQuit(propVar)
+    else {
+        do {
+            indexCounter++ 
 
-        case 3:
-        case 4:
-            userName = prompt(`${propObject[2]} `)
-            break
-
-        case 5:
-            userName = prompt(`${propObject[3]} `)
-            break
-
-        case 6:
-            userName = prompt(`${propObject[4]} `)
-            break
-
-        case 7:
-            userName = prompt(`${propObject[5]} `)
-            process.exit()
-            break
+            switch (indexCounter) {
+                case 0:
+                case 1:
+                case 2:        
+                    propVar = prompt(`${propQuestion[1]} `)
+                    break
+        
+                case 3:
+                case 4:
+                    propVar = prompt(`${propQuestion[2]} `)
+                    break
+        
+                case 5:
+                    propVar = prompt(`${propQuestion[3]} `)
+                    break
+        
+                case 6:
+                    propVar = prompt(`${propQuestion[4]} `)
+                    break
+        
+                case 7:
+                    propVar = prompt(`${propQuestion[5]} `)
+                    process.exit()
+                    break                
+            }
+        } while (propVar === "")
     }
+
+    return propVar
 }
+
+
+
 
 // CLI Calculator
 // ***********************************************************
@@ -112,7 +129,7 @@ function cliCalculator() {
     renderConsoleClear()
     
     renderResult =  `Today's game is LCI Calculator 🧮.\n`
-    renderResult += `Type ${config.quitKeyword} to exit at any time.\n\n`
+    renderResult += `(Type ${config.quitKeyword} to exit at any time).\n\n`
     renderResult += `Please choose one of the following.\n`
 
     const mathOperatorTotal = mathOperator.length
@@ -130,7 +147,7 @@ function cliCalculator() {
     renderConsoleLog(renderResult)
 
     let mathOperatorPrompt
-    indexCounter = 0
+    
     
     do {
         mathOperatorPrompt = prompt(`Choose 👉  1 - ${mathOperatorTotal}: `)
@@ -193,7 +210,7 @@ function cliCalculator() {
     const mathOperationResultInt    = mathOperationResult[0]
     const mathOperationResultString = mathOperationResult[1]
 
-    renderResult = `Equation: ${mathNumX} ${mathOperationResultString} ${mathNumY}`
+    renderResult = `Equation: ${mathNumX} ${mathOperationResultString} ${mathNumY}\n`
     renderResult += `Result: ${Number(mathOperationResultInt)}\n`
 
     renderConsoleLog(renderResult)
@@ -205,28 +222,23 @@ function cliCalculator() {
 
 
 
-// 0.0) Initiate
+// 0.0) Inititiate
 // ***********************************************************
 let renderResult
 renderConsoleClear()
 
 
+
 // 1.0) Ask Name
 // ***********************************************************
-let indexCounter = 0
 renderResult = `Hello ${renderOperator()} What is thy name?\n`
+renderResult += `(Type ${config.quitKeyword} to exit at any time).\n\n`
 renderResult += `---------------------------------`
-
 renderConsoleLog(renderResult)
 
 let userName = prompt('Your name: ')
+userName = checkPrompt(userName,questionName)
 
-if (userName == "") {
-    do {
-        indexCounter++
-        promptQuestions(indexCounter,nameQuestion)
-    } while (userName == "")
-}
 
 
 // 2.0) Greet Operator
@@ -237,30 +249,22 @@ renderResult = `Hello, ${renderOperator(userName)}, Nice to meet you. I am LAH 9
 renderConsoleLog(renderResult)
 
 
+
 // 3.0) Greet Operator and Ask to Play
 // ***********************************************************
-indexCounter = 0
 renderResult = `Would you like to play a game today?\n`
 renderResult += `---------------------------------`
 renderConsoleLog(renderResult)
 
-let continueGame = prompt('Type any letter to continue or No to quit.')
-
-if (continueGame == "") {
-    do {
-        indexCounter++
-        promptQuestions(indexCounter,gameQuestion)
-
-        forceQuit(continueGame)
-
-    } while (continueGame == "")
-} 
+let continueGame = prompt(`Type any letter to continue or ${config.quitKeyword} to exit. `)
+checkPrompt(continueGame,questionGame)
 
 if (continueGame == "No") {
     renderResult = `I'm sorry Dave, I'm afraid I can't do that. 🔴`
     renderConsoleClear()
     renderConsoleLog(renderResult)
 }
+
 
 
 // 4.0) Lets Play
@@ -272,17 +276,8 @@ while (continueGame !== null) {
     renderResult += `---------------------------------`
     renderConsoleLog(renderResult)
 
-    continueGame = prompt('Type any letter to continue or No to quit. ')
-    if (continueGame == "") {
-        do {
-            indexCounter++
-            promptQuestions(indexCounter,gameQuestion)
-
-            forceQuit(continueGame)
-
-        } while (continueGame == "")
-    }
-
+    continueGame = prompt(`Type any letter to continue or ${config.quitKeyword} to exit. `)
+    checkPrompt(continueGame,gameQuestion)
     
     if (continueGame == "No") {
         renderConsoleClear()
@@ -293,6 +288,4 @@ while (continueGame !== null) {
         renderConsoleLog(renderResult)
         break        
     }
-}  /// BUG: when entering any word besdies NO or Yes it exits
-// BUG: fix issue when entering blank.
-// Need to stream line code
+}
