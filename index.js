@@ -102,7 +102,9 @@ function promptQuestions(propVar, propObject) {
 function lciCalculator() {
     renderConsoleClear()
     
-    renderResult = `Today's game is LCI Calculator 🧮.\nType ${quitKeyword} to exit at any time.\n\nPlease choose one of the following.\n`
+    renderResult =  `Today's game is LCI Calculator 🧮.\n`
+    renderResult += `Type ${quitKeyword} to exit at any time.\n\n`
+    renderResult += `Please choose one of the following.\n`
 
     const mathOperatorTotal = mathOperator.length
 
@@ -280,4 +282,5 @@ while (continueGame !== null) {
         break        
     }
 }  /// BUG: when entering any word besdies NO or Yes it exits
-/// BUG: fix issue when entering blank.
+// BUG: fix issue when entering blank.
+// Need to stream line code
