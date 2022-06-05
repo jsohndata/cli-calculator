@@ -51,9 +51,6 @@ const mathOperator = [
 
 const quitKeyword = `quit`
 
-
-console.log(mathOperator[0])
-
 function renderConsoleLog(paramText) {
     console.log(paramText)
 }
@@ -138,7 +135,9 @@ function lciCalculator() {
     // 1) Choose Math Operator and Number
     // ***********************************************************
     /* -1 => because array starts with 0. For human we have added 1 to each index so start is 1 not 0 */
-    renderResult = `You have choosen ${mathOperatorPrompt} for ${mathOperator[mathOperatorPrompt - 1]}.\n---------------------------------`
+    renderResult = `You have choosen ${mathOperatorPrompt} for ${mathOperator[mathOperatorPrompt - 1]}.\n`
+    renderResult += `---------------------------------`
+    
     renderConsoleLog(renderResult)
 
 
@@ -183,26 +182,11 @@ function lciCalculator() {
     const mathOperationResultInt    = mathOperationResult[0]
     const mathOperationResultString = mathOperationResult[1]
 
-    /* For visual aid */
-    // const mathOperatorFunction = {
-    //     '0': function (x,y) { return [x + y, `+`]},
-    //     '1': function (x,y) { return [x - y, `-`]},
-    //     '2': function (x,y) { return [x * y, `*`]},
-    //     '3': function (x,y) { return [x / y, `/`]},
-    //     '4': function (x,y) { return [x % y, `%`]},
-    // } 
-
     renderResult = `Equation: ${mathNumX} ${mathOperationResultString} ${mathNumY}`
     renderResult += `Result: ${Number(mathOperationResultInt)}\n`
 
     renderConsoleLog(renderResult)
 }
-
-
-
-
-
-
 
 
 
@@ -215,7 +199,9 @@ renderConsoleClear()
 // 1.0) Ask Name
 // ***********************************************************
 let indexCounter = 0
-renderResult = `Hello ${renderOperator()} What is thy name?\n---------------------------------`
+renderResult = `Hello ${renderOperator()} What is thy name?\n`
+renderResult += `---------------------------------`
+
 renderConsoleLog(renderResult)
 
 let userName = prompt('Your name: ')
@@ -239,7 +225,9 @@ renderConsoleLog(renderResult)
 // 3.0) Greet Operator and Ask to Play
 // ***********************************************************
 indexCounter = 0
-renderResult = `Would you like to play a game today?\n---------------------------------`
+renderResult = `Would you like to play a game today?\n`
+renderResult += `---------------------------------`
+
 renderConsoleLog(renderResult)
 
 let continueGame = prompt('Type any letter to continue or No to quit.')
@@ -266,7 +254,8 @@ if (continueGame == "No") {
 while (continueGame !== null) {
     lciCalculator()
 
-    renderResult = `Would you like to play a again ${renderOperator(userName)}?\n---------------------------------`
+    renderResult =  `Would you like to play a again ${renderOperator(userName)}?\n`
+    renderResult += `---------------------------------`
     renderConsoleLog(renderResult)
 
     continueGame = prompt('Type any letter to continue or No to quit. ')
@@ -283,7 +272,10 @@ while (continueGame !== null) {
     
     if (continueGame == "No") {
         renderConsoleClear()
-        renderResult = `---------------------------------\nSo long, and thanks for\nall the fish ${renderOperator(userName)}.\n\nFarewell 🌏\n---------------------------------`
+        renderResult =  `---------------------------------\n`
+        renderResult += `So long, and thanks for\n`
+        renderResult += `all the fish ${renderOperator(userName)}.\n\n`
+        renderResult += `Farewell 🌏\n---------------------------------`
         renderConsoleLog(renderResult)
         break        
     }
