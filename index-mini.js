@@ -33,9 +33,10 @@ console.clear()
 console.log(`\nHello ${userName} welcome to LCI calculator.`)
 console.log(`\nWould you like to try?`)
 
-let mathContinue = prompt(`Yes/No: `)
+console.log(`\n---------------------------------`)
+let mathContinue = prompt(`Type 1 (Yes), 0 (No): `)
 
-mathContinue === "Yes" ? mathContinue = true : mathQuit()
+mathContinue === "1" ? mathContinue = true : mathQuit()
 
 while (mathContinue > 0) { 
     console.clear()
@@ -45,7 +46,8 @@ while (mathContinue > 0) {
     3. ${mathOperator[3]}
     4. ${mathOperator[4]}`)
 
-    const mathOperation = prompt("Type 1,2,3,4: ")
+    console.log(`\n---------------------------------`)
+    const mathOperation = prompt("Type 1, 2, 3, 4: ")
 
     forceQuit(mathOperation)
 
@@ -81,11 +83,12 @@ while (mathContinue > 0) {
     console.log(`Your result: ${mathResult}`)
 
     console.log(`Would you like to continue?`)
-    mathContinue = prompt(`Yes/No: `)
+    console.log(`\n---------------------------------`)
+    mathContinue = prompt(`Type 1 (Yes), 0 (No): `)
     forceQuit(mathContinue)
 
 
-    if (mathContinue === "No")
+    if (mathContinue === "0")
     {
         mathQuit()
         break;
