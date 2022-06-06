@@ -7,11 +7,11 @@ const mathOperator = {
     "4": "Division",      
 }
 
-const checkForForceQuitKeyword = `quit`
+const forceQuitKeyword = `quit`
 
 // Force quit any time
 function checkForForceQuit(propVar) {
-    if (propVar === checkForForceQuitKeyword) {
+    if (propVar === forceQuitKeyword) {
         console.clear()
         console.log(`Parting is such sweet sorrow. 💔`)
         process.exit()
