@@ -7,18 +7,18 @@ const mathOperator = {
     "4": "Division",      
 }
 
-const forceQuitKeyword = `quit`
+const checkForForceQuitKeyword = `quit`
 
 // Force quit any time
-function forceQuit(propVar) {
-    if (propVar === forceQuitKeyword) {
+function checkForForceQuit(propVar) {
+    if (propVar === checkForForceQuitKeyword) {
         console.clear()
         console.log(`Parting is such sweet sorrow. 💔`)
         process.exit()
     } else null
 }
 
-function mathQuit() {
+function renderMathQuit() {
     console.clear()
     console.log(`Thank you ${userName}. Good bye.`)
 }
@@ -36,7 +36,7 @@ console.log(`\nWould you like to try?`)
 console.log(`\n---------------------------------`)
 let mathContinue = prompt(`Type 1 (Yes), 0 (No): `)
 
-mathContinue === "1" ? mathContinue = true : mathQuit()
+mathContinue === "1" ? mathContinue = true : renderMathQuit()
 
 while (mathContinue > 0) { 
     console.clear()
@@ -49,16 +49,16 @@ while (mathContinue > 0) {
     console.log(`\n---------------------------------`)
     const mathOperation = prompt("Type 1, 2, 3, 4: ")
 
-    forceQuit(mathOperation)
+    checkForForceQuit(mathOperation)
 
     console.clear()
     console.log(`You have selected ${mathOperation} ${mathOperator[mathOperation]}`)
     const mathNumberX = prompt(`Please enter first number. `)
-    forceQuit(mathNumberX)
+    checkForForceQuit(mathNumberX)
     console.log(`First number: ${mathNumberX}\n`)
 
     const mathNumberY = prompt(`Please enter second number. `)
-    forceQuit(mathNumberY)
+    checkForForceQuit(mathNumberY)
     console.log(`Second number: ${mathNumberY}`)
 
     let mathResult
@@ -85,12 +85,12 @@ while (mathContinue > 0) {
     console.log(`Would you like to continue?`)
     console.log(`\n---------------------------------`)
     mathContinue = prompt(`Type 1 (Yes), 0 (No): `)
-    forceQuit(mathContinue)
+    checkForForceQuit(mathContinue)
 
 
     if (mathContinue === "0")
     {
-        mathQuit()
+        renderMathQuit()
         break;
     } else {
         mathContinue = true
