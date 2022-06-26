@@ -1,7 +1,8 @@
-# Node CLI Calculator App
+# CLI Calculator App
+Command Line (CLI) calculator to perform basic math functions such as addition, subtraction, multiplication, and division while using prompt to get user input.
 
-## Project Set Up
-
+### NPM
+Install sync-prompt with Node.js for it to properly operate.
 ```
-Having fun with command line calculator
+npm install sync-prompt
 ```
