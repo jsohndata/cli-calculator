@@ -34,7 +34,21 @@ function sample1() {
 
 
 
-// Loop 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Flow Control 
 /*
 0.0) Start Clean
 0.1) State sentence
@@ -73,11 +87,11 @@ function sample2() {
                                                                 //|
         // 2.0) Check Response                                  //|
         // 2.1) If Yes, clear, set to true, stay in loop        //|
-        if (questionContinue == "Yes") {                        //|
+        if (questionContinue == "yes") {                        //|
             questionContinue == true                            //|
             console.clear() //----------------------------------//|
                                                                 
-        } else {
+        } else if (questionContinue == "no") {
         // 2.1) Else => No, clear, state message, and exit loop
             questionContinue == false
             console.clear()
